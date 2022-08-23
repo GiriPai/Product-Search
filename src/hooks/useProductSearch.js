@@ -21,12 +21,22 @@ const useProductSearch = (
     const controller = new AbortController();
     const { signal } = controller;
 
-    getProductsPage(searchTerm, page, pageSize, { signal })
-      .then((data) => {
-        console.log(data);
+    if (!searchTerm) {
+      setIsLoading(true);
+      setIsError(false);
+      setError({});
+      return;
+    }
 
-        setResults((prev) => [...prev, ...data.data.products]);
-        setHasNextPage(page !== data.paging.page);
+    getProductsPage(searchTerm, page, pageSize, { signal })
+      .then(({ data }) => {
+        console.log(data);
+        if (data.products) {
+          setResults((prev) => [...prev, ...data.products]);
+          setHasNextPage(page !== data.paging.page);
+        } else {
+          setHasNextPage(false);
+        }
         setIsLoading(false);
       })
       .catch((e) => {
