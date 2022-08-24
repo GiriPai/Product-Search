@@ -1,5 +1,6 @@
 [[redirects]]
   from = "/backend"
   to = "https://www.blibli.com"
-  status = 301
+  status = 200
   force = true
+  headers = {X-From = "Netlify"}
