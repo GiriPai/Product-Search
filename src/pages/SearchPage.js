@@ -9,11 +9,11 @@ import { DEFAULTS } from "../constants/defaults.constants";
 import useProductSearch from "../hooks/useProductSearch";
 
 const SearchPage = () => {
+  const pageSize = DEFAULTS.PAGE_SIZE;
   const [page, setPage] = useState(DEFAULTS.PAGE);
-  const [pageSize, setPageSize] = useState(DEFAULTS.PAGE_SIZE);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const { isLoading, isError, error, results, hasNextPage } = useProductSearch(
+  const { isLoading, isError, results, hasNextPage } = useProductSearch(
     page,
     pageSize,
     searchTerm
