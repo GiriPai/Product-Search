@@ -2,8 +2,6 @@ import React, { useRef, useCallback } from "react";
 import ProductCard from "./ProductCard";
 
 const Products = ({ products, isLoading, hasNextPage, setPage }) => {
-  console.log(products);
-
   const intObserver = useRef();
   const lastProductRef = useCallback(
     (product) => {
@@ -25,10 +23,14 @@ const Products = ({ products, isLoading, hasNextPage, setPage }) => {
   let content = products.map((product, i) => {
     if (products.length === i + 1) {
       return (
-        <ProductCard ref={lastProductRef} key={product.id} product={product} />
+        <ProductCard
+          ref={lastProductRef}
+          key={i + product.id}
+          product={product}
+        />
       );
     }
-    return <ProductCard key={product.id} product={product} />;
+    return <ProductCard key={i + product.id} product={product} />;
   });
   return content;
 };

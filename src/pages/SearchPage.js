@@ -14,7 +14,6 @@ const SearchPage = () => {
     pageSize,
     searchTerm
   );
-  console.log(results);
 
   const setSearch = (e) => {
     setSearchTerm(e.target.value);

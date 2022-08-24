@@ -30,10 +30,9 @@ const useProductSearch = (
 
     getProductsPage(searchTerm, page, pageSize, { signal })
       .then(({ data }) => {
-        console.log(data);
         if (data.products) {
           setResults((prev) => [...prev, ...data.products]);
-          setHasNextPage(page !== data.paging.page);
+          setHasNextPage(page !== data.paging.total_page);
         } else {
           setHasNextPage(false);
         }
