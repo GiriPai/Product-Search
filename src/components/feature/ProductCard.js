@@ -4,6 +4,10 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ProductCard = React.forwardRef(({ product }, ref) => {
+  const handleProductClick = () => {
+    alert(`Product ${product.name} has been clicked`);
+  };
+
   const productDetails = (
     <>
       <div className="card h-100">
@@ -43,6 +47,10 @@ const ProductCard = React.forwardRef(({ product }, ref) => {
               <p className="text-muted">({product.review.count})</p>
             </div>
           )}
+        </div>
+
+        <div className="btn btn-primary m-2" onClick={handleProductClick}>
+          View Details
         </div>
       </div>
     </>
