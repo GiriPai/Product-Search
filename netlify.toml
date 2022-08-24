@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/backend"
+  to = "https://www.blibli.com"
+  status = 301
+  force = true
