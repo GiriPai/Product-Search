@@ -1,7 +1,7 @@
-import React from "react";
-import ImgCarousal from "../common/ImgCarousal";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
+import ImgCarousal from "../common/ImgCarousal";
 
 const ProductCard = React.forwardRef(({ product }, ref) => {
   const handleProductClick = () => {
@@ -32,7 +32,7 @@ const ProductCard = React.forwardRef(({ product }, ref) => {
                 width="15px"
                 className="mr-3"
               />
-              <p className="fs-6 ">{product.location}</p>
+              <p className="fs-6">{product.location}</p>
             </div>
           )}
 

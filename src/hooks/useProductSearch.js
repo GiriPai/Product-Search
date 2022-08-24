@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getProductsPage } from "../api/apiClient";
 import { DEFAULTS } from "../constants/defaults.constants";
 
@@ -22,6 +22,7 @@ const useProductSearch = (
     const { signal } = controller;
 
     if (!searchTerm) {
+      setResults([]);
       setIsLoading(true);
       setIsError(false);
       setError({});

@@ -1,6 +1,6 @@
 import React from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const ImgCarousal = ({ images, alt }) => {
   return (
@@ -14,7 +14,13 @@ const ImgCarousal = ({ images, alt }) => {
     >
       {images.map((img) => (
         <div key={img}>
-          <img className="rounded" src={img} alt={alt} />
+          <img
+            className="rounded"
+            src={img}
+            alt={alt}
+            height={"280px"}
+            width={"auto"}
+          />
         </div>
       ))}
     </Carousel>
