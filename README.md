@@ -19,3 +19,7 @@ https://quinbay-product-search.netlify.app/
 ## Features
 
 This application uses lazy loading to load search results. This means, as and when you reach the last product, an api call will fire requesting for next set of results.
+
+## Running in local browser
+
+To run this application in local browser, make sure to add Access-Control-Allow-Origin plugin to your browser and turn it on.
