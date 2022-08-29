@@ -7,6 +7,8 @@ const useProductSearch = (
   pageSize = DEFAULTS.PAGE_SIZE,
   searchTerm = ""
 ) => {
+  const [currSearchTerm, setCurrSearchTerm] = useState("");
+
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -14,20 +16,22 @@ const useProductSearch = (
   const [hasNextPage, setHasNextPage] = useState(false);
 
   useEffect(() => {
+    if (!searchTerm) {
+      setResults([]);
+      setIsLoading(false);
+      setIsError(false);
+      setError({});
+      return;
+    }
+
+    if (searchTerm !== currSearchTerm) setResults([]);
+
     setIsLoading(true);
     setIsError(false);
     setError({});
 
     const controller = new AbortController();
     const { signal } = controller;
-
-    if (!searchTerm) {
-      setResults([]);
-      setIsLoading(true);
-      setIsError(false);
-      setError({});
-      return;
-    }
 
     getProductsPage(searchTerm, page, pageSize, { signal })
       .then(({ data }) => {
@@ -38,16 +42,22 @@ const useProductSearch = (
           setHasNextPage(false);
         }
         setIsLoading(false);
+        setCurrSearchTerm(searchTerm);
       })
       .catch((e) => {
-        setIsLoading(false);
         if (signal.aborted) return;
-        setIsError(true);
-        setError({ message: e.message });
+
+        setIsLoading(false);
+        setResults([]);
+        if (e.response.data.code !== 422) {
+          setIsError(true);
+
+          setError({ message: e.message });
+        }
       });
 
     return () => controller.abort();
-  }, [searchTerm, page, pageSize]);
+  }, [searchTerm, page, pageSize, currSearchTerm]);
 
   return { isLoading, isError, error, results, hasNextPage };
 };
